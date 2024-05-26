@@ -114,18 +114,19 @@ Esta linea es de utilidad si deseamos colocar algunos modulos contenidos dentro 
 	  _ sh /usr/lib/puthon3/dist-packages/odoo/install_dependecies.sh
 
 En esta linea determinamos la ejecucion  del archivo que se encargara de instalar las dependencias contenidas en los modulos con el 
-nombre "**requirements.txt**" Este archivo sera copiado durante el proceso de construccion del "Dockerfile" 
+nombre "**requirements.txt**" Este archivo sera copiado durante el proceso de construccion del "Dockerfile" y luego de esto, se
+auto-ejecutara, buscando dentro de los addons el archivo "**requirements.txt**" si los hubiera. 
 
 ----------------------------------------------------------------------------------------------------------------------------------
 
 ## PASOS: 
 
-1. Clonar o descargar  el repositorio "**odoo16-prod**" en su maquina local 
-2. Revisar a gusto la version de Odoo que desea usar dentro del DOCKERFILE en la primer linea FROM
+1. Clonar o descargar  el repositorio "**odoo16-prod**" en su maquina local o maquina destino para su cliente.
+2. Revisar a gusto la version de Odoo que desea usar dentro del DOCKERFILE en la primer linea FROM.
 3. Editar el archivo **docker-compose.yml** segun su necesidad, determinando un nombre de imagen 
 nombre de contenedor, puerto de Odoo, los volumens, el campo HOST en "environment" de servicio web, el nombre de imagen del 
 servicio DB, nombre del contenedor db. 
-4. Recuerde de modificar el archivo "**odoo.conf**" respetando el db_host con el nombre de contenedor db declarado en el 
+4. Recuerde modificar el archivo "**odoo.conf**" respetando el db_host con el nombre de contenedor db declarado en el 
 "**docker-compose.yml**" como tambien respetar el usuario y contraseña de la db que desea usar. 
 5. Editar su archivo "**gitman.yml**" con los repositorios que desea usar. 
 > Para este repositorio se declararon los repos disponibles por ADHOC para la localizacion argentina como asi tambien ,
@@ -151,16 +152,17 @@ construccion.
 9. Durante el proceso de construccion, docker build se encargarar de leer las lineas y copiar los directorios
 necesarios de odoo dentro del contenedor web y a su vez, realizara la creacion de la carpeta "**external_addons**" 
 como la instalacion de los addons y paquetes declarados en "**gitman.yml**" y la ejecucion de los "**requirements.txt**"
+usando el script destinado para esta accion "**install_dependecies.sh**"
 
-10. Luego de la construccion satisfactoria ahora debe verificar su "**docker-compose.yml**" y asegurarse que 
-los datos estan correctos, con respecto a nombre de imagen y volumens declarados para los modulos como tambien 
+11. Luego de la construccion satisfactoria, debe verificar su "**docker-compose.yml**" y asegurarse que 
+los datos esten correctos; con respecto a nombre de imagen y volumens declarados para los modulos como tambien 
 los declarados en el "**odoo.conf**" 
-11. Ejecutar el comando : 
+12. Ejecutar el comando : 
 	- ``` sudo docker compose up -d ``` 
-Con este comando usted levantara los servicios de odoo y postgresql, una vez ejecutado y finalizado puede 
-verificar si esta corriendo con el comando : 
+Con este comando usted levantara los servicios de odoo y postgresql. Una vez ejecutado y finalizado puede 
+verificar si estan corriendo los servicios con el comando : 
 	- ``` sudo docker compose ps ``
-12. Su sistema odoo esta corriendo, y ahora puede consultarlo en su navegador web con la url o ip publica o localhost
+13. Su sistema odoo esta corriendo, y ahora puede consultarlo en su navegador web con la url o ip publica o localhost
 dependiendo donde esta corriendo su sistema de gestion y crear su primer base de datos. 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -169,9 +171,9 @@ dependiendo donde esta corriendo su sistema de gestion y crear su primer base de
 
 Es de vital importancia saber que para no perder la informacion de la base de datos, si desea realizar cambios como: 
 actualizar los repositorios de gitman o agregar nuevos modulos en la carpeta addons, como tambien si desea realizar 
-algun cambio de configuracion en su **odoo.conf** todos y cada uno de estos sera necesario realizar un re-build 
+algun cambio de configuracion en su **odoo.conf** para todos y cada uno de estos cambios sera necesario realizar un re-build 
 de su imagen. 
-Para esto debe tener en cuenta de una vez realizado estos cambios y guardados sera importante que realice un stop 
+Para esto debe tener en cuenta que una vez realizado estos cambios y guardados sera importante que realice un stop 
 en sus contenedores con el comando ``` sudo docker compose stop `` SOLO STOP , ya que si usa el comando *down* o 
 *down -v* perdera todos los cambios en su base de datos. 
 
@@ -183,10 +185,10 @@ Para hacer un rebuild use el comando
 Una ves finalizada la reconstruccion de su imagen puede levantar nuevamente los contenedores con el comando 
 	- ``` sudo docker compose up -d ``
 Ingresar en su instancia con su navegador web de preferencia y de esta manera no sufrira ninguna perdida de informacion
-Tambien puede realizar el re-build sin necesaridad de para el contenedor con el comando "docker compose stop" y una 
+Tambien puede realizar el re-build sin necesaridad de frenar el contenedor con el comando "docker compose stop" y una 
 vez realizados los cambios deseados, puede usar el comando 
 	- ``` sudo docker compose restart ``
-Y seria sufieciente para poder obtener los cambios deseados, como lo son agregar nuevos addons. Pero es importante
+Y seria suficiente para poder obtener los cambios deseados, como lo son agregar nuevos addons. Pero es importante
 mencionar que no siempre los toma a los cambios con un "restart", asi de esta manera usted debera detener los 
 contenedores y hacer el re-build para luego levantar los contenedores. 
 
