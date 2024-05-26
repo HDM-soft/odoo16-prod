@@ -22,6 +22,8 @@ Docker Compose y la herramienta GITMAN
 * Archivo "**gitman.yml**"
 * Archivo "**install_dependencies.sh**"
 
+_ Se incluye el modulo "*web_responsive*" dentro de la carpeta "*addons*"  
+
 _ Este template fue desarrollado para agilizar los despliegues en produccion y de test, usando herramientas 
 que facilitan la tarea como es la herramienta Docker y Docker Compose. La cual nos permite en pocos pasos y 
 con pocos comandos poner en marcha nuestro sistema de gestion ERP-ODOO; habiendo determinado previamente 
