@@ -1,0 +1,120 @@
+location: external_addons
+sources:
+  - repo: https://github.com/ingadhoc/account-financial-tools.git
+    name: account-financial-tools
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - ""
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh
+  
+  - repo: https://github.com/ingadhoc/account-invoicing.git
+    name: account-invoicing
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - ""
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh
+  
+  - repo: https://github.com/ingadhoc/account-payment.git
+    name: account-payment
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - ""
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh 
+  
+  - repo: https://github.com/ingadhoc/aeroo_reports.git
+    name: aeroo_reports
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - ""
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh
+  
+  - repo: https://github.com/ingadhoc/odoo-argentina.git
+    name: odoo-argentina
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - ""
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh
+  
+  - repo: https://github.com/ingadhoc/odoo-argentina-ce.git
+    name: odoo-argentina-ce
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - ""
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh
+  
+  - repo: https://github.com/ingadhoc/argentina-sale.git
+    name: argentina-sale
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - ""
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh
+  
+  - repo: https://github.com/ingadhoc/stock.git
+    name: stock
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - ""
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh
+
+  - repo: https://github.com/odoomates/odooapps.git
+    name: odooapps
+    rev: "16.0"
+    type: git
+    params:
+    sparse_paths:
+      - "om_account_accountant"
+      - "accounting_pdf_reports"
+      - "om_account_asset"
+      - "om_account_budget"
+      - "om_fiscal_year"
+      - "om_recurring_payments"
+      - "om_account_bank_statement_import"
+      - "om_account_daily_reports"
+      - "om_account_followup"
+    links:
+      -
+    scripts:
+      - sh /usr/lib/python3/dist-packages/odoo/install_dependencies.sh
+default_group: ''
+groups:
+  -
